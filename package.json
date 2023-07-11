@@ -1,5 +1,8 @@
 {
-  "name": "",
+  "name": "math-blog",
+  "description": "A blog about math",
+  "author": "Geronimo Pylypchuk",
+  "license": "MIT",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
