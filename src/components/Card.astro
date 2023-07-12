@@ -1,0 +1,26 @@
+---
+const titles = [{
+    title: 'Factorizacion de un primo',
+    content: 'Es un numero primo que se puede expresar como el producto de dos numeros primos, en esta seccion se explicara como se factoriza un numero primo y como se puede obtener sus factores utilizando Typescript.',
+    href: '/factorizacion'
+}]
+// {
+//     title: 'title2',
+//     content: 'content2'
+// }, 
+// {
+//     title: 'title3',
+//     content: 'content3'
+// }] 
+---
+
+<div class="font-serif text-xl font-light text-center">
+    {titles.map(title => (
+        <a href={title.href}>
+            <div class="inline-block m-10 p-7 br-10 rounded-xl hover:shadow-slate-150 hover:shadow-xl duration-200">
+                <h1 class="font-bold mb-3">{title.title}</h1>
+                <p class="w-80 text-justify">{title.content}</p>
+            </div>
+        </a>
+    ))}
+</div>
