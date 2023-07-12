@@ -1,41 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
+import Head from '@/components/Head.astro';
 ---
 
 <Layout title="Rincón Euclideano">
 	<main class="font-serif">
-		<h1 class="text-6xl font-bold">Rincón Euclideano</h1>
-		<Navbar />
-		<div class="mt-10">
+		<Head />
+		<img src="/toros_0.jpg" alt="Logo" class="mx-auto w-1/5" />
+	</main>
+	<body>
+		<div class="flex justify-center text-justify text-lg">
 			<p>
 				Un espacio donde podrás encontrar aportes matemáticos.<br />
 			</p>
+		</div>
+		<div class="flex justify-center text-justify text-lg">
 			<p>
-				¡Nada de curvas ni tensores Ricci!<br />
+				¡Nada de curvas ni tensores Ricci!
 			</p>
 		</div>
-	</main>
-	<body>
-		
 	</body>
-	<footer class="font-serif">
-		<p class="">Por Geronimo Pylypchuk 🎸</p>
-	</footer>
+	<!-- <footer>
+		<p class="absolute translate-y-full text-justify text-lg text-xs">
+			&copy;2021 Rincón Euclideano. All rights reserved.
+		</p>
+	</footer> -->
 </Layout>
-
-<style>
-	main {
-		margin: 0 auto;
-		max-width: 960px;
-		padding: 2rem 1rem;
-	}
-	h1 {
-		font-size: 3rem;
-		text-align: center;
-	}
-	p {
-		font-size: 1.5rem;
-		text-align: center;
-	}
-</style>
