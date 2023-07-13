@@ -1,8 +1,9 @@
 ---
 import Navbar from "./Navbar.astro";
+const black = "#252525";
 ---
 
 <div class="font-serif mt-5">
-    <h1 class="font-bold text-center text-2xl">Rincón Euclideano</h1>
-    <Navbar />
+    <h1 class="font-bold text-center text-2xl" style=`color: ${black};`>Rincón Euclideano</h1>
+    <Navbar color={black} />
 </div>
