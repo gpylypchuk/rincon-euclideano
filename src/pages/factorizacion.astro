@@ -2,6 +2,13 @@
 import Head from '@/components/Head.astro';
 import Layout from '../layouts/Layout.astro';
 import { COLORS } from '../data/constants';
+
+const math = `
+    f(x)=x^2 + 2x + 1 = 0
+    frac(df(x))(dx) = lim_(h->0)(f(x+h)-f(x))/h
+    f(t) = a_(0)/2 + sum_(n=1)^oo [a_(n) cos(nt) + b_(n) sin(nt)]
+    x^' = frac(-b -sqrt(Delta))(2a)`
+
 ---
 
 <Layout title='Factorizacion de un primo'>
@@ -13,41 +20,27 @@ import { COLORS } from '../data/constants';
             <h3>por <a class="hover:underline hover:decoration-lime-400" href="https://twitter.com/geropylypchuk">Geronimo Pylypchuk</a></h3>
             <p class="ml-auto">el 12/07/2023</p>
         </div>
-        <div class="mt-5">
+        <div class="mt-5 text-justify">
             <p>
-                Cuando
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <mi>a</mi><mo>&#x2260;</mo><mn>0</mn>
-                </math>,
-                existen dos soluciones para
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <mi>a</mi><msup><mi>x</mi><mn>2</mn></msup>
-                <mo>+</mo> <mi>b</mi><mi>x</mi>
-                <mo>+</mo> <mi>c</mi> <mo>=</mo> <mn>0</mn>
-                </math>
-                y son
-                <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-                <mi>x</mi> <mo>=</mo>
-                <mrow>
-                    <mfrac>
-                    <mrow>
-                        <mo>&#x2212;</mo>
-                        <mi>b</mi>
-                        <mo>&#x00B1;</mo>
-                        <msqrt>
-                        <msup><mi>b</mi><mn>2</mn></msup>
-                        <mo>&#x2212;</mo>
-                        <mn>4</mn><mi>a</mi><mi>c</mi>
-                        </msqrt>
-                    </mrow>
-                    <mrow>
-                        <mn>2</mn><mi>a</mi>
-                    </mrow>
-                    </mfrac>
-                </mrow>
-                <mtext>.</mtext>
-                </math>
+                Sabemos que un numero primo al que llamaremos 
+                `N`
+                es un numero que solo es divisible por `1` y por si mismo. Lo que queremos hacer es factorizarlo, por lo tanto podemos decir que
+                `N=p*q // N in bbb "N"`
+                sin importar el valor de N para este ejemplo.
+                Pongamoslo de esta manera, para poder buscar que multiplos son.
+                Supongamos que hacemos una multiplicacion de `g*g*g*g*g*g...` hasta `r` veces, entonces podemos decir que
+                `g^r=mN+1` (sabemos que encontraremos un multiplo de N).
             </p>
+            <p>
+                Para comenzar a intuir que valor es `N` lo hay que hacer es
+                `g^x/N` y cuando el resto sea `1` podremos expresarlo como `g^x=mN+1`, 
+                y ahora la `x` sabemos que es `r`, por lo tanto,
+                `g^r=mN+1` cambiando de lugar un poco los valores queda
+                `g^r-1=mN`, teniendo en cuenta de que `r` es par (caso contrario repetimos el proceso de buscar algun otro `g // g=[1,N-1] ^^ g in bbb "N"`),
+                la formula que nos queda es
+            </p>
+            <p class="text-center mt-5 text-xl">`(g^(r/2)-1)*(g^(r/2)+1)=mN`</p>
+            </div>
         </div>
     </div>
 </Layout>

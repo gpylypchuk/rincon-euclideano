@@ -8,7 +8,7 @@ interface IColors {
 // Russian purple: Mountain majesty
 export const COLORS: IColors = {
   black: "#252525;",
-  white: "#EEEEEE",
+  white: "#FBFBFB",
   purple: "#786fa6",
   gray: "#596275",
 };
