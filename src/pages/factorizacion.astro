@@ -2,25 +2,65 @@
 import Head from '@/components/Head.astro';
 import Layout from '../layouts/Layout.astro';
 import { COLORS } from '../data/constants';
+
+const code = `
+TEST CODE!! NOT REAL
+function factorizarPrimo(n: number) {
+    let g = 2;
+    let r = 2;
+    let m = 0;
+    let p = 0;
+    let q = 0;
+    while (true) {
+        if (g > n) {
+            g = 2;
+            r = 2;
+            m = 0;
+            p = 0;
+            q = 0;
+        }
+        if (mcd(g, n) === 1) {
+            r = 2;
+            while (true) {
+                if (r > n) {
+                    g++;
+                    break;
+                }
+                if (Math.pow(g, r) % n === 1) {
+                    m = (Math.pow(g, r) - 1) / n;
+                    if (m % 2 === 0) {
+                        p = mcd(Math.pow(g, r / 2) - 1, n);
+                        q = mcd(Math.pow(g, r / 2) + 1, n);
+                        if (p !== 1 && q !== 1) {
+                            return [p, q];
+                        }
+                    }
+                }
+                r++;
+            }
+        }
+        g++;
+    }
+}`;
 ---
 
 <Layout title='Factorizacion de un primo'>
     <Head />
     <div style=`color: ${COLORS.black}` class="w-96 md:w-2/3 lg:w-2/5 ml-auto mr-auto">
-        <h1 class="mb-5 text-center text-2xl mt-10 font-black">Factorizacion de un primo</h1>
-        <p class="text-justify" style=`color: ${COLORS.gray};`>¿Es posible factorizar un numero primo en otros dos numeros primos? En este blog lo demostraremos para todo n.</p>
+        <h1 class="mb-5 text-center text-2xl mt-10 font-black">Factorización de un primo</h1>
+        <p class="text-justify" style=`color: ${COLORS.gray};`>¿Es posible factorizar un número primo en otros dos números primos? En este blog lo demostraremos para todo n.</p>
         <div class="flex flex-row mt-2 pt-2 pb-2 border-neutral-200 border-y">
-            <h3>por <a class="hover:underline hover:decoration-lime-400" href="https://twitter.com/geropylypchuk">Geronimo Pylypchuk</a></h3>
+            <h3>por <a class="hover:underline hover:decoration-cool-purple" href="https://twitter.com/geropylypchuk">Geronimo Pylypchuk</a></h3>
             <p class="ml-auto">el 12/07/2023</p>
         </div>
         <div class="mt-5 text-justify">
             <p>
-                Sabemos que un numero primo al que llamaremos 
+                Sabemos que un número primo al que llamaremos 
                 `N`
-                es un numero que solo es divisible por `1` y por si mismo. Lo que queremos hacer es factorizarlo, por lo tanto podemos decir que
+                es un número que solo es divisible por `1` y por si mismo. Lo que queremos hacer es factorizarlo, por lo tanto podemos decir que
                 `N=p*q // N in bbb "N"`
                 sin importar el valor de N para este ejemplo.
-                Pongamoslo de esta manera, para poder buscar que multiplos son.
+                Pongamoslo de esta manera, para poder buscar que múltiplos son.
                 Supongamos que hacemos una multiplicacion de `g*g*g*g*g*g...` hasta `r` veces, entonces podemos decir que
                 `g^r=mN+1` (sabemos que encontraremos un multiplo de N).
             </p>
@@ -32,7 +72,53 @@ import { COLORS } from '../data/constants';
                 `g^r-1=mN`, teniendo en cuenta de que `r` es par (caso contrario repetimos el proceso de buscar algun otro `g // g=[1,N-1] ^^ g in bbb "N"`),
                 la formula que nos queda es
             </p>
-            <p class="text-center mt-5 text-xl">`(g^(r/2)-1)*(g^(r/2)+1)=mN`</p>
+            <p class="text-center mt-5 mb-5 text-xl">`(g^(r/2)-1)*(g^(r/2)+1)=mN`</p>
+            <p>
+                Ahora como sabemos que `p` y `q` estan en el lado derecho de la ecuación, tambien lo estaran
+                del lado izquierdo. Entonces con `(g^(r/2)-1)` y `(g^(r/2)+1)`, utilizando el algoritmo de Euclides
+                podemos encontrar `p` y `q`.
+            </p>
+            <p class="mt-5">
+                Para hallarlo hacemos `(g^(r/2)-1) / N` esto nos dara un resto que llamaremos `R`, luego
+                tendremos que hacer `R / N` esto nos dara otro resto
+                entonces el resto anterior lo dividimos por el último resto que nos dió, y asi hasta que el resto `R` sea `0`.
+                El último divisor sera un factor de `N`.
+            </p>
+            <p class="mt-5">En resumen podemos definir este metodo de la siguiente manera: </p>
+            <p class="mt-5">
+                <ul>
+                    <li>`1)` Buscamos un `g{`<`} N`, que no comparta factores con `N`</li>
+                    <li>`2)` Hallar `r` para que `g^r=mN+1`</li>
+                    <li>`3)` Si `r` es par calcula `(g^(r/2)-1)` y `(g^(r/2)+1)`. Si `r` es impar volvé al paso `1`</li>
+                    <li>`4)` Usá el algoritmo de Euclides para hallar el divisor común más grande</li>
+                </ul>
+            </p>
+            <p class="mt-5">
+                Ahora dejaré código escrito en Typescript para que veas cómo podes pasarlo a un programa
+                de la misma manera, ¡podrías hacerlo en cualquier otro lenguaje!
+            </p>
+            <div class="mt-5">
+                <pre class="text-sm bg-neutral-100 p-5 rounded-lg mt-0 pt-0">
+                    <code class="language-typescript">
+                        {code}
+                    </code>
+                </pre>
+            </div>
+            <p class="mt-5">
+                Genial ya sabés factorizar un numero primo. Esta es la base de la criptografía RSA, que es un sistema de criptografía asimétrica.
+                Si te interesa saber más sobre este tema te recomiendo que leas el siguiente articulo: 
+                <a class="hover:underline hover:decoration-cool-purple" href="https://engineering.purdue.edu/kak/compsec/NewLectures/Lecture12.pdf">
+                    Public-Key Cryptography and the RSA Algorithm
+                </a>
+                .
+            </p>
+            <p class="mt-5">
+                Si te gustó este articulo, no dudes en compartirlo, y si tenés alguna duda o sugerencia no dudes en contactarme
+                por <a class="hover:underline hover:decoration-cool-purple" href="https://twitter.com/geropylypchuk">Twitter</a>.
+            </p>
+            <div class="mt-10 text-center mb-5">
+                <p>¡Nos vemos en el próximo articulo!</p>
+                <p>Rincon Euclideano</p>
             </div>
         </div>
     </div>

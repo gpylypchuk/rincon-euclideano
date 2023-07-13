@@ -1,7 +1,7 @@
 ---
 const titles = [{
-    title: 'Factorizacion de un primo',
-    content: 'Es un numero primo que se puede expresar como el producto de dos numeros primos, es decir, que se puede factorizar. En este blogpost definire el concepto con un algoritmo.',
+    title: 'Factorización de un primo',
+    content: 'Es un número primo que se puede expresar como el producto de dos numeros primos, es decir, que se puede factorizar. En este blogpost definiré el concepto con un algoritmo.',
     href: '/factorizacion'
 }]
 // {
@@ -14,12 +14,12 @@ const titles = [{
 // }] 
 ---
 
-<div class="font-serif text-xl font-light text-center">
+<div class="font-serif text-lg font-light text-center">
     {titles.map(title => (
         <a href={title.href}>
             <div class="inline-block m-10 p-7 br-10 rounded-xl hover:shadow-slate-150 shadow-xl hover:scale-105 duration-200">
                 <h1 class="font-bold mb-3">{title.title}</h1>
-                <p class="w-80 text-justify">{title.content}</p>
+                <p class="w-64 text-sm text-justify">{title.content}</p>
             </div>
         </a>
     ))}
