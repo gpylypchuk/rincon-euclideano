@@ -1,12 +1,12 @@
 ---
-
+import { COLORS } from "@/data/constants";
 ---
 
-<div class="text-xl font-serif" style=`color: #252525;`>
+<div class="text-xl font-serif" style=`color: ${COLORS.black};`>
 	<ul>
-		<li><a href="/">Home</a></li>
-		<li><a href="/blog">Blog</a></li>
-		<li><a href="/about">About</a></li>
+		<li><a class=`hover:text-cool-purple` href="/">Home</a></li>
+		<li><a class=`hover:text-cool-purple` href="/blog">Blog</a></li>
+		<li><a class=`hover:text-cool-purple` href="/about">About</a></li>
 	</ul>
 </div>
 
@@ -34,8 +34,5 @@
 		padding: 10px;
 		color: #000;
 		text-decoration: none;
-	}
-	a:hover {
-		color: #5fb44d;
 	}
 </style>
