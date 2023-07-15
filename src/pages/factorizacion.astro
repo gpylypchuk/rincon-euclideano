@@ -4,44 +4,57 @@ import Layout from '../layouts/Layout.astro';
 import { COLORS } from '../data/constants';
 
 const code = `
-TEST CODE!! NOT REAL
-function factorizarPrimo(n: number) {
-    let g = 2;
-    let r = 2;
-    let m = 0;
-    let p = 0;
-    let q = 0;
-    while (true) {
-        if (g > n) {
-            g = 2;
-            r = 2;
-            m = 0;
-            p = 0;
-            q = 0;
-        }
-        if (mcd(g, n) === 1) {
-            r = 2;
-            while (true) {
-                if (r > n) {
-                    g++;
-                    break;
-                }
-                if (Math.pow(g, r) % n === 1) {
-                    m = (Math.pow(g, r) - 1) / n;
-                    if (m % 2 === 0) {
-                        p = mcd(Math.pow(g, r / 2) - 1, n);
-                        q = mcd(Math.pow(g, r / 2) + 1, n);
-                        if (p !== 1 && q !== 1) {
-                            return [p, q];
-                        }
-                    }
-                }
-                r++;
-            }
-        }
-        g++;
+function random(max: number): number {
+    return Math.floor(Math.random() * (max - 1) + 1)
+}
+
+function getG(n: number): number {
+    let g: number = random(n)
+    while (n % g === 0) {
+        g = random(n)
     }
-}`;
+    return g
+}
+
+function findR(g: number, n: number): number {
+    let r: number = 1
+    while ((Math.pow(g, r)) % n !== 1) {
+        ++r
+    }
+    return r
+}
+
+function algoritmoEuclides(n: number, g: number, r: number): number[] {
+    let w = Math.pow(g, r/2) + 1
+    let s = Math.pow(g, r/2) - 1
+
+    let first_factor: number = n;
+    let second_factor: number = n;
+
+    let first_remainder: number = w % first_factor
+    w = first_factor % first_remainder
+    first_factor = first_remainder % w
+
+    let second_reminder: number = s % second_factor
+    s = second_factor % second_reminder
+    second_factor = second_reminder % s
+    
+    return [first_factor, second_factor]
+}
+
+function factorizePrime(n: number): number[] {
+    let g: number = getG(n)
+    let r: number = findR(g, n)
+
+    while (r % 2 !== 0) {
+       g = getG(n)
+       r = findR(g, n) 
+    }
+
+    return algoritmoEuclides(n, g, r)
+}
+
+console.log(factorizePrime(77))`;
 ---
 
 <Layout title='Factorizacion de un primo'>
@@ -98,8 +111,8 @@ function factorizarPrimo(n: number) {
                 de la misma manera, ¡podrías hacerlo en cualquier otro lenguaje!
             </p>
             <div class="mt-5">
-                <pre class="text-sm bg-neutral-100 p-5 rounded-lg mt-0 pt-0">
-                    <code class="language-typescript">
+                <pre class="bg-neutral-100 p-5 rounded-lg mt-0 pt-0" style=`font-size: 10px`>
+                    <code>
                         {code}
                     </code>
                 </pre>
@@ -123,4 +136,3 @@ function factorizarPrimo(n: number) {
         </div>
     </div>
 </Layout>
-
