@@ -8,6 +8,9 @@ module.exports = {
       colors: {
         "cool-purple": COLORS.purple,
       },
+      fontSize: {
+        xxs: '0.625rem',
+      }
     },
   },
   plugins: [],

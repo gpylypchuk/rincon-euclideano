@@ -1,6 +1,7 @@
 ---
 import Head from '@/components/Head.astro';
 import Layout from '../layouts/Layout.astro';
+import Footer from '@/components/Footer.astro';
 import { COLORS } from '../data/constants';
 
 const code = `
@@ -24,7 +25,11 @@ function findR(g: number, n: number): number {
     return r
 }
 
-function algoritmoEuclides(n: number, g: number, r: number): number[] {
+function euclidesAlgorithm(
+    n: number, 
+    g: number, 
+    r: number
+    ): number[] {
     let w = Math.pow(g, r/2) + 1
     let s = Math.pow(g, r/2) - 1
 
@@ -110,8 +115,8 @@ console.log(factorizePrime(77))`;
                 Ahora dejaré código escrito en Typescript para que veas cómo podes pasarlo a un programa
                 de la misma manera, ¡podrías hacerlo en cualquier otro lenguaje!
             </p>
-            <div class="mt-5">
-                <pre class="bg-neutral-100 p-5 rounded-lg mt-0 pt-0" style=`font-size: 10px`>
+            <div class="mt-5 md:text-sm text-xxs">
+                <pre class="bg-neutral-100 p-5 rounded-lg mt-0 pt-0 pb-0">
                     <code>
                         {code}
                     </code>
@@ -129,9 +134,9 @@ console.log(factorizePrime(77))`;
                 Si te gustó este articulo, no dudes en compartirlo, y si tenés alguna duda o sugerencia no dudes en contactarme
                 por <a class="hover:underline hover:decoration-cool-purple" href="https://twitter.com/geropylypchuk">Twitter</a>.
             </p>
-            <div class="mt-10 text-center mb-5">
-                <p>¡Nos vemos en el próximo articulo!</p>
-                <p>Rincon Euclideano</p>
+            <p>¡Nos vemos en el próximo articulo!</p>
+            <div class="mt-5 text-center">
+                <Footer />
             </div>
         </div>
     </div>
