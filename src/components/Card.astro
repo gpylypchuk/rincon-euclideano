@@ -1,26 +1,17 @@
 ---
-const titles = [{
-    title: 'Factorización de un primo',
-    content: 'Es un número primo que se puede expresar como el producto de dos numeros primos, es decir, que se puede factorizar. En este blogpost definiré el concepto con un algoritmo.',
-    href: '/factorizacion'
-}]
-// {
-//     title: 'title2',
-//     content: 'content2'
-// }, 
-// {
-//     title: 'title3',
-//     content: 'content3'
-// }] 
+import Footer from "./Footer.astro";
+import { TITLES } from "../data/constants";
 ---
 
-<div class="font-serif text-lg font-light text-center">
-    {titles.map(title => (
-        <a href={title.href}>
-            <div class="inline-block m-10 p-7 br-10 rounded-xl hover:shadow-slate-150 shadow-xl hover:scale-105 duration-200">
-                <h1 class="font-bold mb-3">{title.title}</h1>
-                <p class="w-64 text-sm text-justify">{title.content}</p>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10 w-3/4 ml-auto mr-auto mb-16">
+    {TITLES.map(title => (
+        <a class="hover:shadow-slate-150 shadow-xl hover:scale-105 duration-200 rounded-xl" href={title.href}>
+            <div class="inline-block p-7">
+                <h1 class="font-bold mb-3 text-xl">{title.title}</h1>
+                <p class="text-ssm text-justify">{title.content.slice(0, 150)}...</p>
             </div>
         </a>
     ))}
 </div>
+
+<Footer />
